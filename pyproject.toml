@@ -1,0 +1,29 @@
+[project]
+name = "stremio-manager"
+version = "0.1.0"
+description = "A self-hosted system to manage Stremio streaming."
+authors = [{ name = "Chris Tomlin", email = "tomlinc@proton.me" }]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic (>=1.16.2,<2.0.0)",
+    "sqlalchemy (>=2.0.41,<3.0.0)",
+    "fastapi (>=0.115.13,<0.116.0)",
+    "uvicorn[standard] (>=0.34.3,<0.35.0)",
+    "pydantic-settings (>=2.9.1,<3.0.0)",
+    "passlib[bcrypt] (>=1.7.4,<2.0.0)",
+    "pydantic[email] (>=2.11.7,<3.0.0)",
+    "sqlmodel (>=0.0.24,<0.0.25)",
+    "httpx-oauth>=0.16.1,<0.17.0",
+    "httpx>=0.27.0,<0.28.0",
+    "aiosqlite (>=0.21.0,<0.22.0)",
+    "python-jose[cryptography] (>=3.3.0,<4.0.0)",
+    "python-multipart (>=0.0.9,<0.0.10)",
+    "bcrypt (<4.0)",
+    "python-dotenv (>=0.21.0,<2.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
