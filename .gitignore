@@ -86,3 +86,14 @@ venv.bak/
 database.db
 *.sqlite
 *.sqlite3
+
+# Node.js / Frontend
+/node_modules/
+/frontend/dist/
+.vite/
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+
+# OS-specific
+.DS_Store
