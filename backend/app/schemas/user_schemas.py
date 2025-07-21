@@ -19,7 +19,6 @@ class User(BaseModel):
     id: int
     email: EmailStr
     is_admin: bool
-    created_at: datetime
 
     class Config:
         from_attributes = True
