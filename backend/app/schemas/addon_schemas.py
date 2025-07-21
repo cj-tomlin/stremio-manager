@@ -6,6 +6,10 @@ class TorrentioInstallationUrlResponse(BaseModel):
     installation_url: str # Stremio URLs are custom scheme, not HttpUrl
 
 
+class AIOStreamsInstallationUrlResponse(BaseModel):
+    installation_url: str # Stremio URLs are custom scheme, not HttpUrl
+
+
 class AddonUsageLog(BaseModel):
     id: int
     user_id: int

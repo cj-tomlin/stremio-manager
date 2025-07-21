@@ -4,7 +4,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./backend/app:/code/app
+      - ./backend:/code
       - ./backend/database.db:/code/database.db
     env_file:
       - ./backend/.env
@@ -16,5 +16,26 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     depends_on:
       - backend
+
+  comet:
+    container_name: comet
+    image: g0ldyy/comet
+    restart: unless-stopped
+    ports:
+      - "8002:8000"
+    env_file:
+      - ./comet.env
+    volumes:
+      - ./data/comet:/app/data
+    healthcheck:
+      test: wget -qO- http://127.0.0.1:8000/health
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+

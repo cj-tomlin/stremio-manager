@@ -6,9 +6,10 @@ class User(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     email: str = Field(unique=True, index=True)
     hashed_password: str
+    is_admin: bool = Field(default=False)
 
     trakt_auth: Optional["TraktUserAuth"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"})
-    usage_logs: List["AddonUsageLog"] = Relationship(back_populates="user")
+    usage_logs: List["AddonUsageLog"] = Relationship(back_populates="user", sa_relationship_kwargs={"cascade": "all, delete-orphan"})
 
 
 class TraktUserAuth(SQLModel, table=True):

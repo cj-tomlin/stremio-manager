@@ -1,11 +1,11 @@
 from datetime import timedelta
 
 from fastapi import APIRouter, Request, Depends, HTTPException, status
+from app import models
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from fastapi.responses import RedirectResponse
 from httpx_oauth.oauth2 import OAuth2
-
 
 from app.core.config import settings
 from app.core.security import create_access_token, verify_password
@@ -65,6 +65,17 @@ async def get_current_user(db: AsyncSession = Depends(get_async_db), token: str 
     if user is None:
         raise credentials_exception
     return user
+
+
+async def get_current_admin_user(
+    current_user: models.User = Depends(get_current_user),
+) -> models.User:
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="The user doesn't have enough privileges",
+        )
+    return current_user
 
 trakt_oauth_client = OAuth2(
     client_id=settings.TRAKT_CLIENT_ID,
