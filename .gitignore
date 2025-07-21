@@ -89,6 +89,7 @@ database.db
 
 # Node.js / Frontend
 /node_modules/
+node_modules/
 /frontend/dist/
 .vite/
 npm-debug.log*
